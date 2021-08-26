@@ -1,0 +1,43 @@
+> package.json 생성
+npm install -g yarn
+yarn init -y
+
+-g: 전역모드로 현재 패키지 컨텍스트(현재 작업 디렉토리)를 전역 패키지로 설치한다.
+yarn: js패키지 매니저 중 하나로 (npm 같은 것) 
+package.json: 배포한 모듈 정보를 담고자 만든것 + 노드로 작성하는 애플리케이션 관리
+https://edu.goorm.io/learn/lecture/557/%ED%95%9C-%EB%88%88%EC%97%90-%EB%81%9D%EB%82%B4%EB%8A%94-node-js/lesson/174371/package-json
+
+
+> package.json에서 작업
+"private": true 추가 -> workspace를 이용하기 위함
+"workspaces": []
+"scrpits":{}
+
+workspaces: 여러 프로젝트들이 모여 있는 작업 공간
+https://nuhends.tistory.com/58
+scripts: workspaces를 실행하는 명령
+
+> workspaces에 지정한 이름대로 폴더 만들기(client, server)
+
+> client 안에서 package.json 파일 생성
+cd client
+yarn init -y
+yarn add react react-dom next node-sass @zeit/next-sass axios
+yarn add --dev webpack@4
+
+https://taeny.dev/javascript/nextjs-with-deployment-platform/
+sass: 기초 언어의 힘 + css 확장
+axios: 브라우저, node.js를 위한 Promise API를 활용하는 HTTP 비동기 통신 라이브러리
+
+--dev: 하나, 하나이상의 package를 종속성(dependencies)에 추가
+https://classic.yarnpkg.com/en/docs/dependency-types#toc-dev-dependencies
+
+webpack: 다수의 js파일을 하나의 js파일로 만들어 주는 것
+https://nesoy.github.io/articles/2019-02/Webpack
+
+
+> client/package.json "scripts" 제작
+
+> pages/index.js 만들기 + 간단한 index.js 만들기
+nextJS에서 기반이 되는 폴더가 pages가 반드시 있어야 한다.
+yarn run client로 확인
