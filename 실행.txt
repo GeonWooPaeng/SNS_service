@@ -22,8 +22,8 @@ scripts: workspaces를 실행하는 명령
 > client 안에서 package.json 파일 생성
 cd client
 yarn init -y
-yarn add react react-dom next node-sass @zeit/next-sass axios
-yarn add --dev webpack@4
+yarn add react react-dom next sass axios
+yarn add --dev webpack
 
 https://taeny.dev/javascript/nextjs-with-deployment-platform/
 sass: 기초 언어의 힘 + css 확장
@@ -41,3 +41,16 @@ https://nesoy.github.io/articles/2019-02/Webpack
 > pages/index.js 만들기 + 간단한 index.js 만들기
 nextJS에서 기반이 되는 폴더가 pages가 반드시 있어야 한다.
 yarn run client로 확인
+
+> client/next.config.js
+
+next.config.js: next에서 사용하는 다양한 설정을 추가할 수 있는 예약된 파일
+(만약 존재하지 않으면 기본 설정을 사용하고, 존재하면 설정값을 덮어쓰는 형식)
+
+> client/components/MsgList.js or Msgitem.js
+
+new Date(timestamp).toLocaleString('ko-KR' ...)
+toLocaleString: 이 날짜의 언어 구분 표현이 있는 문자열 나열
+https://runebook.dev/ko/docs/javascript/global_objects/date/tolocalestring
+2-digit: 2자리의 십진수
+numeric: 정수/소수 값을 저장할 수 있다.
