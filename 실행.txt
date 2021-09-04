@@ -85,4 +85,7 @@ https://ismydream.tistory.com/98
 
 MsgInput 부분을 넣어줍니다.
 const onCreate() 부분을 제작합니다.
+unshift(): 배열/객체 뒤에 추가를 해줍니다.
 useState를 사용하여 변경된 사항을 감지하게 해줍니다.
+useState: 동적으로 컴포넌트에서 상태를 관리하는 것
+https://react.vlpt.us/basic/07-useState.html

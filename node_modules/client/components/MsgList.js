@@ -50,4 +50,5 @@ const MsgList = () => {
         </>
     )
 }
+
 export default MsgList
