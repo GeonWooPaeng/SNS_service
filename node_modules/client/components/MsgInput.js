@@ -23,4 +23,5 @@ const MsgInput = ({ mutate, text = '', id = undefined }) => {
     )
 }
 
+
 export default MsgInput
