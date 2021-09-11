@@ -1,0 +1,7 @@
+{
+    "watch": ["scr"],
+    "ignore": ["db/**/*"],
+    "env": {
+        "NODE_ENV": "development"
+    }
+}

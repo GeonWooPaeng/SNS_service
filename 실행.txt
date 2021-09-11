@@ -100,3 +100,43 @@ isEditing 작성
 
 >client/components/MsgInput.js
 MsgInput에 mutate, id값 받아온다
+
+------------------------------------------
+>> 서버 구현 <<
+> server/terminal
+yarn init -y
+yarn add express cors uuid 
+yarn add --dev nodemon
+
+powershell: CMD의 고급버전으로 CMD에서 엑세스 할 수 없는 시스템 관리 작업을 자동화 하는데 사용
+CMD: Microsoft Windows 운영 체제의 명령 줄 해석기
+express: NodeJS를 사용하여 서버를 개발하는 개발자를 위해 서버를 쉽게 구성할 수 있게 하는 프레임 워크
+NodeJS: 자바스크립트를 브라우저 밖에서 사용하게 해주는 프로그램
+CORS: Cross-Origin Resource Sharing으로 교차 출처 리소스 공유로 브라우저에서 다른 출처의 리소스를 공유하는 방법
+https://beomy.github.io/tech/browser/cors/
+UUID: 네트워크 상에서 고유성이 보장되는 id를 만들기 위한 표준 규약
+https://www.huskyhoochu.com/what-is-uuid/
+
+nodemon: 파일이 변경될때마다 서버를 새로 다시 띄워주는 것
+=> 노드가 실행하는 파일이 속한 디렉토리를 감시하고 있다가 파일이 수정되면 자동으로 노드 애플리케이션을 재시작하는 확장 모듈
+
+> server/package.json 
+"type", "scripts" 작성
+
+> server/nodemon.json 제작
+nodemon이 실행 될때 어떤 것을 감시해서 변경사항을 반영할지, 어떤 것들은 변경되더라도 새로고침을 하지 않을지를 결정하는 것 또한 환경정보 setting
+
+> server/src/db/messages.json
+db 만들기
+client/components/MsgList.js에 있는 orginalMsgs의 값을
+해당 파일에 넣어준다.
+
+> server/src/db/user.json
+
+> server/src/db/dbController.js
+파일을 추가, 수정하면 db의 파일이 수정되게 하는 방법
+fs: FileSystem으로 파일을 처리한다.
+fs.readFileSync(filename, [options]): filename의 파일을 [options]의 방식으로 읽은 후 문자열을 반환한다.
+fs.writeFileSync(filename, data, [options]): filename의 파일에 [options]의 방식으로 data 내용을 씁니다.(동기적)
+
+> server/src/index.js

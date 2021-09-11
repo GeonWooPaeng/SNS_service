@@ -11,6 +11,7 @@
     "sass": "^1.38.1"
   },
   "devDependencies": {
+    "prettier": "2.4.0",
     "webpack": "^5.51.1"
   },
   "scripts": {
