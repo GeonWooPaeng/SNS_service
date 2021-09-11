@@ -140,3 +140,26 @@ fs.readFileSync(filename, [options]): filename의 파일을 [options]의 방식�
 fs.writeFileSync(filename, data, [options]): filename의 파일에 [options]의 방식으로 data 내용을 씁니다.(동기적)
 
 > server/src/index.js
+body-parser모듈 : node express를 사용할 때 데이터(client에서 post로 보내준 데이터)들을 자동으로 parsing해주어서
+,진짜로 필요한 부분인 body부분을 쉽게 추출해주는 모듈
+https://kyoung-jnn.tistory.com/entry/Nodejs-body-parser-%EA%B0%80-%EB%AD%94%EB%8D%B0
+express.urlencoded:urlencoded body-parser를 기반으로 요청된 구문을 분석합니다.
+extended 옵션: 객체 형태로 전달된 데이터내에서 또다른 중첩된 객체를 허용하는 가?
+https://velog.io/@hyunju-song/body-parser%EC%9D%98-urlencoded%EB%8A%94-%EB%8F%84%EB%8C%80%EC%B2%B4-%EC%96%B4%EB%96%A4-%EC%97%AD%ED%95%A0%EC%9D%84-%ED%95%98%EB%8A%94-%EA%B1%B8%EA%B9%8C
+
+
+> server/src/routes/messages.js
+https://meetup.toast.com/posts/92
+리소스: 사용될 수 있는 어떤 항목
+post: post를 통해 해당 url를 요청하면 리소스를 생성합니다.
+get: get를 통해 해당 리소스를 조회합니다. 리소스를 조회하고 해당 document에 대한 자세한 정보를 가져온다.
+put: put를 통해 해당 리소스를 수정합니다.
+delete: delete를 통해 리소스를 삭제합니다.
+
+> server/src/index.js 
+messagesRoute를 불러온다.
+=> messagesRout.forEach() 부분
+
+> server/src/routes/users.js
+
+> server/src/index.js
