@@ -1,4 +1,5 @@
 import { readDB, writeDB } from "../dbController.js";
+import { v4 } from "uuid";
 
 const getMsgs = () => readDB("messages");
 const setMsgs = (data) => writeDB("messages", data);
@@ -8,9 +9,13 @@ const messagesRoute = [
     //GET MESSAGES
     method: "get",
     route: "/messages",
-    handler: (req, res) => {
-      const msgs = readDB("messages");
-      res.send(msgs);
+    handler: ({ query: { cursor = "" } }, res) => {
+      // const msgs = readDB("messages");
+      const msgs = getMsgs();
+      // cursor의 바로 다음 것을 찾게 한다.
+      const fromIndex = msgs.findIndex((msg) => msg.id === cursor) + 1;
+      // res.send(msgs);
+      res.send(msgs.slice(fromIndex, fromIndex + 15)); //한번에 15개씩 불러온다.
     },
   },
   {
@@ -36,16 +41,21 @@ const messagesRoute = [
     route: "/messages",
     handler: ({ body }, res) => {
       //body: 최근에 등록된 text, userId
-      const msgs = getMsgs();
-      const newMsg = {
-        id: v4(),
-        text: body.text,
-        userId: body.userId,
-        timestamp: Date.now(),
-      };
-      msgs.unshift(newMsg);
-      setMsgs(msgs);
-      res.send(newMsg);
+      try {
+        if (!body.userId) throw Error("no userId");
+        const msgs = getMsgs();
+        const newMsg = {
+          id: v4(),
+          text: body.text,
+          userId: body.userId,
+          timestamp: Date.now(),
+        };
+        msgs.unshift(newMsg);
+        setMsgs(msgs);
+        res.send(newMsg);
+      } catch (err) {
+        res.status(500).send({ error: err });
+      }
     },
   },
   {
@@ -80,13 +90,13 @@ const messagesRoute = [
     //DELETE MESSAGE
     method: "delete",
     route: "/messages/:id",
-    handler: ({ body, params: { id } }, res) => {
+    handler: ({ params: { id }, query: { userId } }, res) => {
       try {
         const msgs = getMsgs();
         const targetIndex = msgs.findIndex((msg) => msg.id === id);
-        if (targetIndex < 0) throw "메시지가 없습니다.";
-        if (msgs[targetIndex].userId !== body.userId)
-          throw "사용자가 다릅니다.";
+        if (targetIndex < 0) throw Error("메시지가 없습니다.");
+        if (msgs[targetIndex].userId !== userId)
+          throw Error("사용자가 다릅니다.");
 
         msgs.splice(targetIndex, 1);
         setMsgs(msgs);
