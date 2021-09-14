@@ -125,9 +125,14 @@ nodemon: 파일이 변경될때마다 서버를 새로 다시 띄워주는 것
 
 > server/package.json 
 "type", "scripts" 작성
+"type":module : Node.js에서 ES 모듈을 사용하는 방법
 
 > server/nodemon.json 제작
-nodemon이 실행 될때 어떤 것을 감시해서 변경사항을 반영할지, 어떤 것들은 변경되더라도 새로고침을 하지 않을지를 결정하는 것 또한 환경정보 setting
+nodemon: 변경사항이 발생시 서버를 자동으로 껐다 켜주는 역할하는 것
+"watch": 해당 파일들의 코드 변경이 감지되면 서버를 재시작하겠다.
+"ignore": 무시할 항목
+"env": 포함할 환경변수
+환경변수: 프로세스가 컴퓨터에서 동작하는 방식에 영향을 미치는 동적인 값들의 모임
 
 > server/src/db/messages.json
 db 만들기
@@ -138,20 +143,43 @@ client/components/MsgList.js에 있는 orginalMsgs의 값을
 
 > server/src/db/dbController.js
 파일을 추가, 수정하면 db의 파일이 수정되게 하는 방법
+path 모듈: 폴더와 파일의 경로를 지정해주는 모듈
 fs: FileSystem으로 파일을 처리한다.
 fs.readFileSync(filename, [options]): filename의 파일을 [options]의 방식으로 읽은 후 문자열을 반환한다.
 fs.writeFileSync(filename, data, [options]): filename의 파일에 [options]의 방식으로 data 내용을 씁니다.(동기적)
+path.join(경로,...): 여러 인자를 넣으면 하나의 경로로 합쳐준다.(상대경로)
+path.resolve(경로,...): path.join()과 같지만 절대 경로로 처리한다.
+절대경로: 고유한 경로
+상대경로: 현재위치를 기준으로 해당 위치의 경로
+
 
 > server/src/index.js
+https://expressjs.com/ko/guide/using-middleware.html
+index.js: package.json 파일에서 'main'에 해당하는 파일이 없는 경우 자동으로 불러오는 파일
+
 body-parser모듈 : node express를 사용할 때 데이터(client에서 post로 보내준 데이터)들을 자동으로 parsing해주어서
 ,진짜로 필요한 부분인 body부분을 쉽게 추출해주는 모듈
 https://kyoung-jnn.tistory.com/entry/Nodejs-body-parser-%EA%B0%80-%EB%AD%94%EB%8D%B0
+
+express: 자체적인 최소한의 기능을 갖춘 라우팅 및 미들웨어 웹 프레임워크 입니다.
+https://expressjs.com/ko/guide/using-middleware.html#middleware.application
+미들웨어 함수: 요청 오브젝트(req), 응답 오브젝트(res), 그리고 애플리케이션의 요청-응답 주기 중 그 다음의 미들웨어 함수에 대한 엑세스 권한을 갖는 함수 
+req 객체: HTTP 요청을 나타내며 요청 쿼리 문자열, 매개변수, body, HTTP 헤더 등의 속성을 가지고 있다.
+res 객체: HTTP 요청을 얻을 때 express 앱을 전송하는 HTTP응답
 express.urlencoded:urlencoded body-parser를 기반으로 요청된 구문을 분석합니다.
+HTTP: W3 상에서 정보를 주고받을 수 있는 프로토콜
 extended 옵션: 객체 형태로 전달된 데이터내에서 또다른 중첩된 객체를 허용하는 가?
 https://velog.io/@hyunju-song/body-parser%EC%9D%98-urlencoded%EB%8A%94-%EB%8F%84%EB%8C%80%EC%B2%B4-%EC%96%B4%EB%96%A4-%EC%97%AD%ED%95%A0%EC%9D%84-%ED%95%98%EB%8A%94-%EA%B1%B8%EA%B9%8C
 
+cors: 추가 HTTP 헤더를 사용하여, 한 출처에서 실행 중인 웹 어플리케이션이 다른 출처의 선택한 자원에 접근할 
+수 있는 권한을 부여하도록 브라우저에 알려주는 체제
+https://developer.mozilla.org/ko/docs/Web/HTTP/CORS
+
 
 > server/src/routes/messages.js
+라우팅: URI(또는 경로) 및 특정한 HTTP 요청 메소드(GET, POST 등)인 특정 엔드 포인트에 대한 클라이언트 요청에 애플리케이션이 응답하는 방법을 결정하는 것 
+https://expressjs.com/ko/guide/routing.html
+
 https://meetup.toast.com/posts/92
 리소스: 사용될 수 있는 어떤 항목
 post: post를 통해 해당 url를 요청하면 리소스를 생성합니다.

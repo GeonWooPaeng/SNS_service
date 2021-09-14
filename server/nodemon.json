@@ -1,5 +1,5 @@
 {
-    "watch": ["scr"],
+    "watch": ["src"],
     "ignore": ["db/**/*"],
     "env": {
         "NODE_ENV": "development"
